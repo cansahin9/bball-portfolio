@@ -5,7 +5,7 @@ library(readr)
 library(dplyr)
 
 # Load your pre-processed RDS file
-all_shots <- readRDS("shiny/data/shot_data.rds")  # Already created from precache_shots.R
+all_shots <- readRDS("shiny/data/shot_data.rds") 
 
 # ─── Step 2: Create SQLite DB ──────────────────────────────────
 con <- dbConnect(SQLite(), "shiny/data/shot_data.sqlite")
@@ -22,3 +22,4 @@ dbWriteTable(con, "shots", all_shots)
 dbDisconnect(con)
 
 cat("✅ shot_data.sqlite created successfully.\n")
+
