@@ -63,7 +63,6 @@ team_names <- tribble(
   "ARI", "Aris"
 )
 
-# Re-fetch lineup data if not already done
 # Get games and teams
 teams <- euroleaguer::getCompetitionTeams("U2024")
 rounds <- euroleaguer::getCompetitionRounds("U2024")
@@ -180,5 +179,6 @@ df %>%
 
 # Save to file
 ggsave("eurocup_different_starting_lineups.png", width = 10, height = 8, dpi = 300)
+
 
 
