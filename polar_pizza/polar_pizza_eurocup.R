@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/polar_pizza")
 
 library(tidyverse)
 library(ggplot2)
@@ -65,7 +64,7 @@ p_no_title <- p + labs(title = NULL, subtitle = NULL, caption = NULL)
 
 # ---- Image Panel ----
 img_panel <- ggdraw() +
-  draw_image("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/polar_pizza/sam_dribble.png",
+  draw_image("sam_dribble.png",
              x = 0, y = 0, width = 2, height = 1, hjust = 0, vjust = 0) +
   theme(
     plot.margin = margin(0,0,0,0),
@@ -89,3 +88,4 @@ final <- (img_panel | p_no_title) +
 
 # ---- Save ----
 ggsave("dekker_polar_dribble.png", final, width = 10, height = 6, dpi = 300, bg = "oldlace")
+
