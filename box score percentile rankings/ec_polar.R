@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/player profile dashboards")
 
 # 📦 Load required libraries
 library(tidyverse)
@@ -91,4 +90,5 @@ ggplot(plot_data, aes(x = fct_inorder(stat), y = value, fill = group)) +
 
 # 💾 Save output
 ggsave("Rasheed_Sulaimon_2024_25.png", width = 7, height = 7, dpi = 300, bg = "white")
+
 
