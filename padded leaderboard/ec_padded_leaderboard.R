@@ -1,4 +1,4 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/padded leaderboard")
+
 Sys.setenv(CHROMOTE_CHROME = "D:/Program Files/Google/Chrome/Application/chrome.exe")
 
 library(tidyverse)
@@ -35,12 +35,11 @@ df_ranked <- df_ranked %>%
   )
 
 # Step 5: Build gt table
-# Build gt table with headshots
 gt_table <- df_ranked %>%
   select(ImageUrl, PlayerName, `3PA`, fg3Pct, xFg3Pct, rankGroup) %>%
   group_by(rankGroup) %>%
   gt() %>%
-  gt_img_rows(columns = ImageUrl, height = 25) %>%   # 👈 add images here
+  gt_img_rows(columns = ImageUrl, height = 25) %>%   
   fmt_percent(columns = c(fg3Pct, xFg3Pct), decimals = 1) %>%
   tab_header(
     title = md("**EuroCup Expected 3P% Leaderboards**"),
@@ -86,3 +85,4 @@ gtsave(
   vwidth = 1200,   
   vheight = 1600
 )
+
