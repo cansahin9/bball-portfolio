@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/tables")
 
 gt_theme_f5 <- function(gt_object, ...) {
   gt_object %>%
@@ -279,3 +278,4 @@ create_eurocup_table <- function(first_name, last_name,
 
 # Example usage:
 create_eurocup_table("Tarik", "Phillip")
+
