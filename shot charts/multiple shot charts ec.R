@@ -1,5 +1,3 @@
-# ───── SETUP ─────
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Shot Chart")
 
 # ───── Load Libraries ─────
 library(euroleaguer)
@@ -115,7 +113,7 @@ safe_getGamePoints <- possibly(
   otherwise = NULL
 )
 
-rounds <- 6:16  # You can adjust this range
+rounds <- 6:16  
 games <- map(rounds, safe_getGamePoints)
 games <- compact(games)
 game_data <- bind_rows(games)
@@ -229,7 +227,7 @@ p_fg_by_zone <- plot_court() +
     fill = "white",
     color = "black",
     fontface = "bold",
-    alpha = 0.60  # ✅ Transparency
+    alpha = 0.60  # Transparency
   ) +
   scale_color_brewer(palette = "Dark2") +
   ggtitle(
@@ -248,3 +246,4 @@ p_fg_by_zone <- plot_court() +
 
 
 ggsave(paste0(player_name, " - FG by Zone (Attempts).png"), p_fg_by_zone, height = 6, width = 6, dpi = 300)
+
