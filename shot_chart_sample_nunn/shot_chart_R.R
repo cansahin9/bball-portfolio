@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Shot Chart")
 
 # ───── Load Libraries ─────
 library(euroleaguer)
@@ -191,3 +190,4 @@ p1 <- plot_court(court_theme = court_themes$ppt)+
 ggdraw(p1) + theme(plot.background = element_rect(fill="#fffcf2", color = NA)) 
 
 ggsave("kendrick_nunn_shotchart_sample.png", p1, height = 6, width = 6, dpi = 300)
+
