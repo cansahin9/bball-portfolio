@@ -1,5 +1,3 @@
-# Set working directory
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/different_lineups")
 
 # Load packages
 library(tidyverse)
@@ -15,7 +13,7 @@ theme_owen <- function () {
     )
 }
 
-# STEP 1: Add team color dictionary (your custom EuroCup colors)
+# STEP 1: Add team color dictionary 
 eurocup_colors <- tribble(
   ~TeamCode, ~primary,
   "CAN", "#FFB718",    # Gran Canaria
@@ -182,3 +180,4 @@ df %>%
 
 # Save to file
 ggsave("eurocup_different_starting_lineups.png", width = 10, height = 8, dpi = 300)
+
