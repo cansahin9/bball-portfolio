@@ -140,10 +140,10 @@ df_scatter <- df_lineups %>%
   mutate(win_pct = GamesWon / GamesPlayed) %>%
   left_join(eurocup_colors, by = "TeamCode") %>%
   left_join(team_names, by = "TeamCode") %>%
-  left_join(short_codes, by = "TeamCode") %>%   # 👈 add short codes here
+  left_join(short_codes, by = "TeamCode") %>%   
   mutate(
     primary = ifelse(is.na(primary), "#CCCCCC", primary),
-    label   = ShortLabel   # 👈 use short label always
+    label   = ShortLabel  
   ) %>%
   select(TeamCode, GamesPlayed, GamesWon, GamesLost,
          unique_lineups, pct_lineup_volatility, win_pct, primary, label)
@@ -203,3 +203,4 @@ ggplot(df_scatter, aes(x = pct_lineup_volatility, y = win_pct)) +
 
 # === SAVE PLOT ===
 ggsave("eurocup_lineup_continuity_vs_win_pct_2025.png", width = 6, height = 6, dpi = 300)
+
