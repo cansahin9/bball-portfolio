@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/off_def_rating_scatter")
 
 # Libraries
 library(tidyverse)
@@ -6,15 +5,15 @@ library(ggrepel)
 library(prismatic)
 
 # Load EuroCup CSV
-eurocup <- read_csv("24_25_teams_adv_stats.csv")  # Update path if needed
+eurocup <- read_csv("24_25_teams_adv_stats.csv") 
 
 # Clean column names
 eurocup <- eurocup %>% janitor::clean_names()
 
-# Optional: Clean team names if needed
+# Clean team names
 eurocup$team <- str_replace_all(eurocup$team, "\\s+", " ")
 
-# Add custom colors (partial — expand this as needed)
+# Add custom colors 
 eurocup_colors <- tibble::tibble(
   team = c(
     "Valencia Basket",
@@ -67,7 +66,7 @@ eurocup <- eurocup %>% left_join(eurocup_colors, by = "team")
 
 # Build the plot
 eurocup_plot <- eurocup %>%
-  ggplot(aes(x = o_rtg, y = d_rtg)) +  # FIXED HERE
+  ggplot(aes(x = o_rtg, y = d_rtg)) + 
   geom_smooth(method = "lm", color = "gray85", fill = "gray80") +
   geom_point(
     aes(fill = color, color = after_scale(clr_darken(fill, 0.3))),
@@ -106,3 +105,4 @@ ggsave("eurocup_team_ratings_25.png", eurocup_plot, height = 6, width = 6, dpi =
 
 # View plot
 eurocup_plot
+
