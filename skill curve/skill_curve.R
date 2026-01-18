@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/skill curve")
 
 # --- Packages ---
 library(readr)
@@ -63,15 +62,15 @@ files <- list(
   "2024–25" = "yogi_ferrell_24_25_ec.csv" 
 )
 
-# Now .x = path, .y = season label
+# .x = path, .y = season label
 df <- imap_dfr(files, ~ clean_one_ec(.x, .y))
 
-# --- 1) Standardize team names (so legend & color mapping align) ---
+# --- 1) Standardize team names ---
 df <- df %>%
   mutate(
     Team = str_trim(Team),
     Team = case_when(
-      # Budućnost variants (EuroCup short code "BUD", full names, diacritics, etc.)
+      # Budućnost variants 
       str_detect(Team, regex("^BUD$|budu|buduc", ignore_case = TRUE)) ~ "Budućnost VOLI",
       # Cedevita variants
       str_detect(Team, regex("cedevita", ignore_case = TRUE)) ~ "Cedevita Olimpija",
@@ -88,7 +87,7 @@ teams <- sort(unique(df$Team))
 pal_fill <- setNames(scales::hue_pal(l = 80)(length(teams)), teams)
 pal_line <- setNames(scales::hue_pal(l = 30)(length(teams)), teams)
 
-# Overwrite for our two clubs (names must match the standardized labels above)
+# Overwrite for our two clubs
 if ("Budućnost VOLI" %in% teams) {
   pal_fill["Budućnost VOLI"] <- bud_fill
   pal_line["Budućnost VOLI"] <- bud_line
@@ -139,3 +138,4 @@ p_final <- ggdraw(p) +
 
 ggsave("Yogi Ferrell Skill Curve — EuroCup 2021-24.png",
        p_final, width = 6, height = 6, dpi = 300)
+
