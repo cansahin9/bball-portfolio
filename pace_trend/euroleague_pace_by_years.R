@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/pace_by_season_eurocup")
 
 # ---------------- Packages ----------------
 library(tidyverse)
@@ -13,12 +12,12 @@ library(purrr)
 library(cowplot)
 
 # ---------------- Paths ----------------
-input_file <- "euroleague_league_avg_all_time.csv"   # <- change if needed
+input_file <- "euroleague_league_avg_all_time.csv"  
 out_csv    <- "euroleague_pace_by_season_clean.csv"
 out_plot   <- "euroleague_pace_by_season.png"
 plot_title <- "EuroLeague Pace by Season" 
 logo_path_el <- "euroleague_logo.png"
-logo_path_ec <- "eurocup_logo.png" # change to "EuroCup Pace by Season" if EuroCup file
+logo_path_ec <- "eurocup_logo.png" 
 
 # ---------------- Read and promote header robustly ----------------
 # read with no names
@@ -130,6 +129,7 @@ ggsave("euroleague_pace_by_season_with_logo.png",
        p_with_logo, width = 10, height = 6, dpi = 300, bg = "oldlace")
 
 print(p)
+
 
 
 
