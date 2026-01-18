@@ -1,7 +1,3 @@
-# ───────────────────────────────────────────────
-# 📁 SETUP
-# ───────────────────────────────────────────────
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/post game report")
 
 generate_team_advanced_metrics <- function(season_code, game_code, team_code, save_path = NULL) {
   library(euroleaguer)
@@ -12,9 +8,8 @@ generate_team_advanced_metrics <- function(season_code, game_code, team_code, sa
   library(glue)
   library(tidyr)
   
-  # ───────────────────────────────────────────────
-  # 🎨 GT Theme Function
-  # ───────────────────────────────────────────────
+  
+  # GT Theme Function
   gt_theme_f5 <- function(gt_object, ...) {
     gt_object %>%
       opt_table_font(
@@ -45,9 +40,7 @@ generate_team_advanced_metrics <- function(season_code, game_code, team_code, sa
       )
   }
   
-  # ───────────────────────────────────────────────
-  # 📊 Compute Metrics
-  # ───────────────────────────────────────────────
+  # Compute Metrics
   get_team_advanced_metrics <- function(box, team_code) {
     team <- box$TeamStats %>% filter(TeamCode == team_code)
     opp  <- box$TeamStats %>% filter(TeamCode != team_code)
@@ -95,9 +88,8 @@ generate_team_advanced_metrics <- function(season_code, game_code, team_code, sa
     )
   }
   
-  # ───────────────────────────────────────────────
-  # 🏀 Scoring Opportunities
-  # ───────────────────────────────────────────────
+ 
+  # Scoring Opportunities
   get_scoring_opportunities <- function(pbp_df, player_stats_df, team_code) {
     bench_ids <- player_stats_df %>%
       filter(TeamCode == team_code, IsStarter == 0) %>%
@@ -126,18 +118,15 @@ generate_team_advanced_metrics <- function(season_code, game_code, team_code, sa
     )
   }
   
-  # ───────────────────────────────────────────────
-  # 📦 Load Data
-  # ───────────────────────────────────────────────
+  # Load Data
   box <- getGameBoxScore(season_code, game_code)
   pbp <- getGamePoints(season_code, game_code)
   
   metrics <- get_team_advanced_metrics(box, team_code)
   scoring <- get_scoring_opportunities(pbp, box$PlayerStats, team_code)
   
-  # ───────────────────────────────────────────────
-  # 🧱 Build GT Table
-  # ───────────────────────────────────────────────
+
+  # Build GT Table
   stats_tbl <- tibble(
     Category = c(
       "Scoring Opportunities", "Scoring Opportunities", "Scoring Opportunities", "Scoring Opportunities",
@@ -189,9 +178,8 @@ generate_team_advanced_metrics <- function(season_code, game_code, team_code, sa
     ) %>%
     cols_width(Metric ~ px(200), Value ~ px(80))
   
-  # ───────────────────────────────────────────────
-  # 💾 Export
-  # ───────────────────────────────────────────────
+
+  # Export
   if (is.null(save_path)) {
     save_path <- glue("Advanced_Team_Metrics_{team_code}_{game_code}.png")
   }
@@ -201,3 +189,4 @@ generate_team_advanced_metrics <- function(season_code, game_code, team_code, sa
 }
 
 generate_team_advanced_metrics(season_code = "U2025", game_code = 46, team_code = "TTK")
+
