@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/player and team usage chart")
 
 # --- Libraries ---
 library(tidyverse)
@@ -28,7 +27,7 @@ theme_f5 <- function(font_size = 9) {
 # --- 1. Load scraped CSV ---
 raw_data <- read.csv("clean_column_names.csv", stringsAsFactors = FALSE)
 
-# --- 2. Lookup table for team names -> official codes ---
+# --- 2. Lookup table for team names -> official codes 
 team_lookup <- tibble(
   scraped_name = c(
     "Valencia Basket", "Hapoel Tel Aviv", "CB Gran Canaria", "Hapoel Jerusalem BC", 
@@ -43,11 +42,11 @@ team_lookup <- tibble(
   )
 )
 
-# --- 3. Merge scraped data with lookup ---
+# --- 3. Merge scraped data with lookup 
 scraped <- raw_data %>%
   left_join(team_lookup, by = c("TEAM" = "scraped_name"))
 
-# --- 4. Fetch team logos/colors from API ---
+# --- 4. Fetch team logos/colors from API 
 team_logos <- map_dfr(unique(scraped$team_code), function(code) {
   tryCatch({
     getTeam(team_code = code, season_code = "U2024") %>%
@@ -156,3 +155,4 @@ p <- euro_df %>%
 
 # --- 9. Save ---
 ggsave("eurocup_usg_leaders.png", p, width = 6, height = 3, dpi = 600)
+
