@@ -1,8 +1,4 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/team matchup table")
-
-# =========================================
 # EuroCup Matchup Tables (Owen-style theme)
-# =========================================
 
 library(tidyverse)
 library(janitor)
@@ -292,7 +288,7 @@ gt_def <- row_map_def %>%
 
 # ---- Merge offense + defense safely ----
 gt_split <- gt_off %>%
-  left_join(gt_def, by = c("group", "row_id")) %>%   # ✅ join also by row_id
+  left_join(gt_def, by = c("group", "row_id")) %>%   # join also by row_id
   select(group, name_off = name.x, value_1, rank_1_num,
          name_def = name.y, value_2, rank_2_num) %>%
   mutate(
@@ -496,4 +492,5 @@ gt_save_crop(
   whitespace = 20,
   bg = "white"
 )
+
 
