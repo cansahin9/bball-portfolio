@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/BBall/Portfolio/reports/tables")
 
 # Load required libraries
 library(gt)
@@ -6,15 +5,12 @@ library(dplyr)
 library(readr)
 library(scales)
 
-# ───────────────────────────────────────────────
-# 🔧 Step 1: Load CSV
-# ───────────────────────────────────────────────
-file_path <- "C:/Users/User/OneDrive/Masaüstü/BBall/Portfolio/reports/tables/Tarik PHILLIP.csv"
+# Step 1: Load CSV
+file_path <- "Tarik PHILLIP.csv"
 df <- read_csv(file_path)
 
-# ───────────────────────────────────────────────
-# 🎨 Step 3: Custom GT Theme
-# ───────────────────────────────────────────────
+
+# Step 3: Custom GT Theme
 gt_theme_f5 <- function(gt_object, ...) {
   gt_object %>%
     opt_table_font(
@@ -123,13 +119,13 @@ combined_table <- combined_data %>%
       domain = c(0, 100)
     )
   ) %>%
-  # 🟩 This line below ensures correct label for PCTL¹ column
+  # This line below ensures correct label for PCTL¹ column
   cols_label(`PCTL¹` = md("**PCTL¹**")) %>%
   # only category left aligned
   cols_align(align = "left", columns = Category) %>%
   cols_align(align = "center", columns = c(Value, `PCTL¹`)) %>%
   
-  # 🆕 Style: Gray background & bold for sub-category titles
+  # Style: Gray background & bold for sub-category titles
   tab_style(
     style = list(
       cell_fill(color = "gray95"),
@@ -147,4 +143,5 @@ combined_table <- combined_data %>%
 
 # Save the table as a PNG file
 gtsave(combined_table, "Tarik PHILLIP Advanced Profile.png")
+
 
