@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/team matchup table")
 
 library(magick)
 
@@ -16,4 +15,5 @@ combine_matchup_tables(
   gt2_path = "matchup_BES_vs_BUD.png",
   output_path = "matchup_combined_BUD_BES.png"
 )
+
 
