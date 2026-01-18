@@ -1,5 +1,3 @@
-# --- Setup ---
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/leaderboard plot")
 
 library(tidyverse)
 library(euroleaguer)
@@ -161,3 +159,4 @@ p <- df %>%
 
 # 10. Save
 ggsave("eurocup_stocks_per40_RS.png", p, w = 8, h = 4, dpi = 600)
+
