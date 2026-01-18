@@ -1,7 +1,3 @@
-# ───────────────────────────────────────────────
-# 📁 SETUP
-# ───────────────────────────────────────────────
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/post game report")
 
 library(euroleaguer)
 library(dplyr)
@@ -11,9 +7,8 @@ library(stringr)
 library(glue)
 library(tidyr)  
 
-# ───────────────────────────────────────────────
-# 🎨 REUSABLE THEME FUNCTION (for padding + style)
-# ───────────────────────────────────────────────
+
+#  REUSABLE THEME FUNCTION (for padding + style)
 gt_theme_f5 <- function(gt_object, ...) {
   gt_object %>%
     opt_table_font(
@@ -26,7 +21,7 @@ gt_theme_f5 <- function(gt_object, ...) {
     ) %>%
     tab_style(
       style = list(
-        cell_text(font = google_font("Roboto"), v_align = "bottom", size = px(12), weight = 'bold', color = "black"),  # 👈 add color = "black"
+        cell_text(font = google_font("Roboto"), v_align = "bottom", size = px(12), weight = 'bold', color = "black"),  # add color = "black"
         cell_fill(color = "white")
       ),
       locations = cells_body()
@@ -73,7 +68,7 @@ player_df <- player_df %>%
     Player = str_trim(str_to_title(gsub("#\\d+", "", Player))),
     Player = str_trim(glue("{Player} {Number}"))
   ) %>%
-  select(-Number)  # 👈 THIS removes the extra column
+  select(-Number)  # removes the extra column
 
 player_df <- player_df %>%
   mutate(
@@ -129,7 +124,7 @@ player_table <- player_df %>%
     columns = c(`2P%`, `3P%`, `FT%`),
     decimals = 1, pattern = "{x}%"
   ) %>%
-  # Format TS% as percentage (multiply by 100 and add %)
+  # Format TS% as percentage
   fmt_percent(
     columns = TS,
     decimals = 1
@@ -143,7 +138,7 @@ player_table <- player_df %>%
     table.font.size = 12,
     column_labels.font.weight = "bold",
     heading.align = "left",
-    data_row.padding = px(6),        # ← key change
+    data_row.padding = px(6),       
     row_group.padding = px(2),
     column_labels.padding = px(2),
     table_body.hlines.color = "gray90"
@@ -199,3 +194,4 @@ player_table <- player_table %>%
 
 # Export to PNG
 gtsave(player_table, "lions vs ttk _Player_Efficiency_Boxscore 2.png", expand = 10)
+
