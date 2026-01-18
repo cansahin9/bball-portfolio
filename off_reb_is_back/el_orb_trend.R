@@ -47,7 +47,7 @@ orb_trend_euroleague <- orb_trend_euroleague %>%
   mutate(
     year = as.integer(gsub("E", "", Season)),
     label = sprintf("%02d", year %% 100),
-    type = "EuroLeague" # just 1 line for now, but matches SLB structure
+    type = "EuroLeague" 
   )
 
 years <- orb_trend_euroleague$year
@@ -100,4 +100,5 @@ ggsave(
 
 eurocup_seasons <- getCompetitionHistory("U")
 head(eurocup_seasons)
+
 
