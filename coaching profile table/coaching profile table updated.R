@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Eurocup/25-26/vs Besiktas 07.10.2025")
 
 Sys.setenv(CHROMOTE_CHROME = "D:/Program Files/Google/Chrome/Application/chrome.exe")
 
@@ -188,3 +187,4 @@ Alimpijevic %>%
        </div>')
   ) %>%
   gt_save_crop(file = "Alimpijevic.png", whitespace = 20, bg = "floralwhite")
+
