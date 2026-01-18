@@ -66,7 +66,7 @@ df <- read_csv("ec_coach_ranks_upd.csv") %>%
     coach_name = sub("\\s*\\(.*", "", coach_name),
     record = paste0(wins, "-", losses),
     record = paste0(record, " (", tolower(append_suffix(w_pct_rank)), ")"),
-    team_abbreviation = paste0("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/coaching profile tables/ec_team_logos_svg/", team_abbreviation, ".png"),
+    team_abbreviation = paste0("ec_team_logos_svg/", team_abbreviation, ".png"),
     pace = round(pace, 1),
     net_rating = sprintf("%+3.1f", net_rating),
     across(ends_with("_pct"), ~ scales::percent(., .1)),
@@ -187,4 +187,5 @@ Alimpijevic %>%
        </div>')
   ) %>%
   gt_save_crop(file = "Alimpijevic.png", whitespace = 20, bg = "floralwhite")
+
 
