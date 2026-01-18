@@ -53,9 +53,10 @@ all_eurocup_shots <- map_dfr(1:nrow(players), function(i) {
 })
 # After combining all shots
 all_eurocup_shots <- all_eurocup_shots %>%
-  mutate(season_code = SeasonCode)  # ✅ Add this line
+  mutate(season_code = SeasonCode)  
 
 
 # Save to RDS
 saveRDS(all_eurocup_shots, "data/eurocup_shot_data.rds")
 message("✅ eurocup_shot_data.rds created with ", nrow(all_eurocup_shots), " rows.")
+
