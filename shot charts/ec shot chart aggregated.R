@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Shot Chart")
 
 # ───── Load Libraries ─────
 library(euroleaguer)
@@ -158,16 +157,16 @@ plot_court = function(court_theme = court_themes$light, use_short_three = FALSE)
     )
 }
 
-# Safe version of getGamePoints — returns NULL on error
+# Safe version of getGamePoints
 safe_getGamePoints <- possibly(
   function(code) getGamePoints(season_code = "U2025", game_code = code),
   otherwise = NULL
 )
 
-# Game codes you want to test (Rounds 1-2 = 10:16 for example)
+# Game codes 
 rounds <- 6:16
 
-# Try retrieving each game safely
+# Try retrieving each game
 games <- map(rounds, safe_getGamePoints)
 
 # Remove failed (NULL) results
@@ -175,7 +174,6 @@ games <- compact(games)
 
 # Combine all successful game data
 game_data <- bind_rows(games) 
-
 
 # Shot coordinate transformation
 shots <- game_data %>%
@@ -210,4 +208,5 @@ p1 <- plot_court(court_theme = court_themes$ppt)+
 final_plot <- ggdraw(p1) + theme(plot.background = element_rect(fill = "white", color = NA))
 
 ggsave("Tarik Phillip - All Shots.png", final_plot, height = 6, width = 6, dpi = 300)
+
 
