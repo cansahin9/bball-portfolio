@@ -65,7 +65,7 @@ ggplot(plot_data, aes(x = fct_inorder(stat), y = value, fill = group)) +
   geom_bar(stat = "identity", width = 1, colour = "white", linewidth = 0.5) +
   geom_label(aes(label = round(value)), fill = "gray25", colour = "white",
              size = 4, family = "Sans", fontface = "bold", show.legend = FALSE) +
-  coord_curvedpolar() +   # ✅ keep only ONE coord system
+  coord_curvedpolar() +   
   scale_fill_manual(values = color_map) +
   theme_void(base_family = "sans") +
   theme(
@@ -90,6 +90,7 @@ ggplot(plot_data, aes(x = fct_inorder(stat), y = value, fill = group)) +
 
 # 💾 Save output
 ggsave("Rasheed_Sulaimon_2024_25.png", width = 7, height = 7, dpi = 300, bg = "white")
+
 
 
 
