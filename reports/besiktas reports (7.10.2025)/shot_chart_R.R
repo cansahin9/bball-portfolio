@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Shot Chart")
 
 # ───── Load Libraries ─────
 library(euroleaguer)
@@ -192,4 +191,5 @@ p1 <- plot_court(court_theme = court_themes$ppt)+
 final_plot <- ggdraw(p1) + theme(plot.background = element_rect(fill = "white", color = NA))
 
 ggsave("Ante ZIZIC vs Lietkabelis Panevėžys R1.png", final_plot, height = 6, width = 6, dpi = 300)
+
 
