@@ -35,7 +35,7 @@ metrics <- tribble(
   
   "Usage %",            "USGP_PCTL",            "Possession",
   "Assist %",           "ASTP_PCTL",            "Possession",
-  "Ball Security",      "TOVP_PCTL",            "Possession",  # Will invert below
+  "Ball Security",      "TOVP_PCTL",            "Possession",  
   "Off. Rebounding %",  "ORBP_PCTL",            "Possession",
   
   "Def. Rebounding %",  "DRBP_PCTL",            "Defending",
@@ -90,5 +90,6 @@ ggplot(plot_data, aes(x = fct_inorder(stat), y = value, fill = group)) +
 
 # 💾 Save output
 ggsave("Rasheed_Sulaimon_2024_25.png", width = 7, height = 7, dpi = 300, bg = "white")
+
 
 
