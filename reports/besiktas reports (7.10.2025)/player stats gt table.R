@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Eurocup/25-26/vs Besiktas 07.10.2025")
 
 # Load required libraries
 library(gt)
@@ -41,17 +40,17 @@ gt_table <- per_game_stats %>%
   tab_header(
     title = "Per Game Stats by Season"
   ) %>%
-  # ✅ Keep integers for G only
+  # Keep integers for G only
   fmt_number(
     columns = G,
     decimals = 0
   ) %>%
-  # ✅ Keep one decimal for the rest
+  # Keep one decimal for the rest
   fmt_number(
     columns = c(MP, PTS, FG, FGA, `3P`, `3PA`, FT, FTA, AST, TOV, ORB, DRB, STL, BLK),
     decimals = 1
   ) %>%
-  # ✅ Format % columns with % sign
+  # Format % columns with % sign
   fmt_number(
     columns = c(`FG%`, `3P%`, `FT%`),
     decimals = 1,
@@ -64,7 +63,7 @@ gt_table <- per_game_stats %>%
     `FG%` = "FG%",
     `FT%` = "FT%"
   ) %>%
-  # 🔥 Black header styling
+  # Black header styling
   tab_style(
     style = list(
       cell_fill(color = "black"),
@@ -81,5 +80,6 @@ gt_table <- per_game_stats %>%
     data_row.padding = px(2)
   )
 
-# ✅ Save final table
+# Save final table
 gtsave(gt_table, "per_game_stats_by_season.png")
+
