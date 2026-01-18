@@ -38,7 +38,7 @@ eurocup_colors <- tribble(
   "ARI", "#c9aa00"     # Aris
 )
 
-# Optional: Friendly team names (for facet titles later)
+# Optional
 team_names <- tribble(
   ~TeamCode, ~TeamName,
   "CAN", "Gran Canaria",
@@ -180,4 +180,5 @@ df %>%
 
 # Save to file
 ggsave("eurocup_different_starting_lineups.png", width = 10, height = 8, dpi = 300)
+
 
