@@ -17,7 +17,7 @@ library(ggpp)
 
 # logos/photos 
 team_logo_src    <- "https://media-cdn.cortextech.io/102de468-9e41-4b8e-b44d-23bebb9e916f.png?width=90&height=90&resizeType=fill&format=webp"
-player_photo_src <- "C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/bar_chart/tarik_phillip_profile.png"
+player_photo_src <- "bar_chart/tarik_phillip_profile.png"
 
 .norm_np <- function(x){
   x %>% iconv(from = "", to = "ASCII//TRANSLIT") %>%
@@ -276,5 +276,6 @@ shoot_with_badges <- shoot_plot +
 
 print(shoot_with_badges)
 ggsave("tarik_phillip_shooting_badged.png", shoot_with_badges, height = 5, width = 8, dpi = "retina")
+
 
 
