@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/tables")
 
 # Load required libraries
 library(gt)
@@ -6,15 +5,11 @@ library(dplyr)
 library(readr)
 library(scales)
 
-# ───────────────────────────────────────────────
-# 🔧 Step 1: Load CSV
-# ───────────────────────────────────────────────
-file_path <- "C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/tables/Tarik PHILLIP.csv"
+# Step 1: Load CSV
+file_path <- "Tarik PHILLIP.csv"
 df <- read_csv(file_path)
 
-# ───────────────────────────────────────────────
-# 🎯 Step 2: Extract shooting zones
-# ───────────────────────────────────────────────
+# Step 2: Extract shooting zones
 zone_data <- tibble::tibble(
   Zone = c("Rim", "Paint", "Mid", "Corner 3", "Above 3"),
   `Freq %` = df %>%
@@ -46,9 +41,8 @@ zone_data_with_footer <- bind_rows(
   )
 )
 
-# ───────────────────────────────────────────────
-# 🎨 Step 3: Custom GT Theme
-# ───────────────────────────────────────────────
+
+# Step 3: Custom GT Theme
 gt_theme_f5 <- function(gt_object, ...) {
   gt_object %>%
     opt_table_font(
@@ -128,5 +122,6 @@ zone_table_gt <- zone_data %>%
   cols_align(align = "center", columns = everything())
 
 
-# Save table (optional)
+# Save table
 gt::gtsave(zone_table_gt, "shooting_efficiency_zone_compact.png")
+
