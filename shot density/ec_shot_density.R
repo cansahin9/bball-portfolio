@@ -1,11 +1,6 @@
-# ===========================
-# EuroCup 2024–25 | Team vs Team Shot Density Difference (FIBA meters)
-# ===========================
-
-# (optional) setwd("C:/path/to/your/folder")
 Sys.setenv("VROOM_CONNECTION_SIZE" = 5000000)
 
-# 📦 Packages
+# Packages
 library(tidyverse)
 library(euroleaguer)
 library(janitor)
@@ -18,22 +13,17 @@ library(conflicted)
 conflict_prefer("filter","dplyr"); conflict_prefer("select","dplyr")
 conflict_prefer("rename","dplyr"); conflict_prefer("lag","dplyr")
 
-# ===========================
 # CHOOSE SEASON & TEAMS
-# ===========================
-SEASON <- "U2024"               # EuroCup 2024–25; use "E2024" for EuroLeague
+SEASON <- "U2024"               
 
-teamA_query <- "Aris"       # name or code, e.g., "BES"
-teamB_query <- "Turk Telekom"      # name or code, e.g., "BUD"
+teamA_query <- "Aris"       
+teamB_query <- "Turk Telekom"      
 
-# Optional: colors for the plot (low = TeamB, high = TeamA)
+# colors for the plot (low = TeamB, high = TeamA)
 col_teamA <- "#937C08"
 col_teamB <- "#208297"
 
-# ===========================
 # 1) FIBA HALF COURT (METERS)
-# ===========================
-# Official FIBA dimensions (half court)
 width  <- 15.00     # baseline-to-baseline width
 height <- 14.00     # baseline to halfcourt line
 key_height <- 5.80
@@ -89,9 +79,7 @@ build_fiba_court_m <- function() {
 
 court_points <- build_fiba_court_m()
 
-# ===========================
 # 2) GAMES, LOOKUP & SHOT DATA
-# ===========================
 rounds <- getCompetitionRounds(SEASON)
 games  <- map_dfr(rounds$Round, ~ tryCatch(getCompetitionGames(SEASON, round = .x), error = function(e) NULL))
 
@@ -141,9 +129,7 @@ get_team_shots <- function(game_codes, team_code_str) {
 teamA_shots <- get_team_shots(teamA_games, tA$code) %>% mutate(name_team = tA$name)
 teamB_shots <- get_team_shots(teamB_games, tB$code) %>% mutate(name_team = tB$name)
 
-# ===========================
 # 3) ENGINE UNITS -> METERS (+ rim alignment)
-# ===========================
 # EuroCup engine ranges observed: X ~ [-700,+700] (≈1400), Y ~ [0,1300]
 x_scale <- width  / 1400
 y_scale <- height / 1300
@@ -166,9 +152,7 @@ shots_all <- shots_raw_m %>%
   ) %>%
   select(locationX, locationY, name_team)
 
-# ===========================
 # 4) KDE DIFFERENCE (meters)
-# ===========================
 tm_density_compare <- function(df, team1, team2, n = 200) {
   df1 <- df %>% filter(name_team == team1)
   df2 <- df %>% filter(name_team == team2)
@@ -201,9 +185,7 @@ density_plot <- density_data %>%
          is.finite(z)) %>%
   distinct(x_coord, y_coord, .keep_all = TRUE)
 
-# ===========================
 # 5) PLOT (Owen-style, FIBA meters)
-# ===========================
 p <- ggplot() +
   geom_raster(data = density_plot, aes(x = x_coord, y = y_coord, fill = z), na.rm = TRUE) +
   stat_contour(data = density_plot, aes(x = x_coord, y = y_coord, z = z, color = after_stat(level)),
@@ -236,5 +218,6 @@ p <- ggplot() +
 # Draw with background and save (use 15:14 aspect for fuller court)
 p <- cowplot::ggdraw(p) + theme(plot.background = element_rect(fill = "floralwhite", color = NA))
 ggsave(glue::glue("{tA$code}_{tB$code}_density_plot.png"), p, width = 6, height = 6, units = "in", dpi = 600)
+
 
 
