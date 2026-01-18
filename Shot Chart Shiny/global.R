@@ -8,7 +8,7 @@ library(hexbin)
 source("court.R")
 source("helpers.R")
 source("fetch_data.R")
-source("hex_chart.R")  # Copy from BallR into your project
+source("hex_chart.R")  
 
 
 # --- STEP 1: Format function ---
@@ -24,5 +24,6 @@ season_labels <- setNames(seasons, sapply(seasons, format_season_label))
 # --- Load CSVs ---
 games_df <- readr::read_csv("data/games.csv")
 players_df <- readr::read_csv("data/players.csv")
+
 
 
