@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/post game report")
 
 # ───── SETUP ─────
 library(euroleaguer)
@@ -87,7 +86,7 @@ plot_court = function(court_theme = court_themes$ppt) {
 }
 
 # ───── LOAD SHOT DATA ─────
-game_code <- 46   # Replace with your game code
+game_code <- 46  
 team_code <- "TTK"
 
 game_data <- getGamePoints(season_code = "U2025", game_code = game_code)
@@ -120,3 +119,4 @@ p <- plot_court() +
 
 # ───── SAVE ─────
 ggsave("lions vs ttk _All_Shots_Simple 2.png", p, width = 6, height = 6, dpi = 300)
+
