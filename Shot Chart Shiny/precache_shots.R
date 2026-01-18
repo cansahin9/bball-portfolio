@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Shot Chart/shiny")
 
 library(dplyr)
 library(purrr)
@@ -53,4 +52,5 @@ all_shots <- purrr::map_dfr(1:nrow(players_df), function(i) {
 })
 
 saveRDS(all_shots, "data/shot_data.rds")
+
 
