@@ -1,7 +1,3 @@
-# ───────────────────────────────────────────────
-# 📁 SETUP
-# ───────────────────────────────────────────────
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/post game report")
 
 library(euroleaguer)
 library(dplyr)
@@ -11,9 +7,9 @@ library(scales)
 library(gtExtras)
 library(purrr)
 
-# ───────────────────────────────────────────────
-# 📊 STEP 1: Get Game Boxscore
-# ───────────────────────────────────────────────
+
+# STEP 1: Get Game Boxscore
+
 game_data <- getGameBoxScore(season_code = "U2025", game_code = 46)
 
 # London Lions (TeamCode = "LLI")
@@ -31,9 +27,8 @@ team_stats <- game_data$TeamStats %>%
     AST, TO, OREB, DREB, STL, BLK
   )
 
-# ───────────────────────────────────────────────
-# 📈 STEP 2: Get Season Averages for Team
-# ───────────────────────────────────────────────
+
+# STEP 2: Get Season Averages for Team
 season_avg <- getTeamStats(
   season_code = "U2025",
   team_code = "TTK",
@@ -46,10 +41,7 @@ season_avg <- getTeamStats(
     AST, TO, OREB, DREB, STL, BLK
   )
 
-
-# ───────────────────────────────────────────────
-# 🧮 STEP 3: Create Comparison (Game vs Season Average)
-# ───────────────────────────────────────────────
+# STEP 3: Create Comparison (Game vs Season Average)
 comparison_df <- team_stats %>%
   pivot_longer(everything(), names_to = "Metric", values_to = "Value") %>%
   left_join(
@@ -67,7 +59,7 @@ comparison_df <- team_stats %>%
     )
   )
 
-# 🧮 STEP 3.5: Reshape Comparison to Wide Format (for coloring)
+# STEP 3.5: Reshape Comparison to Wide Format (for coloring)
 team_wide <- comparison_df %>%
   select(Metric, Value, Diff) %>%
   pivot_wider(
@@ -76,9 +68,7 @@ team_wide <- comparison_df %>%
     names_glue = "{.value}_{Metric}"
   )
 
-# ───────────────────────────────────────────────
-# 🎨 STEP 4: GT THEME (f5 style)
-# ───────────────────────────────────────────────
+# STEP 4: GT THEME (f5 style)
 gt_theme_f5 <- function(gt_object, ...) {
   gt_object %>%
     opt_table_font(
@@ -122,10 +112,8 @@ gt_theme_f5 <- function(gt_object, ...) {
 
 value_cols <- names(team_wide)[grepl("^Value_", names(team_wide))]
 
-# ───────────────────────────────────────────────
-# 🧾 STEP 5: Build Final Table
-# ───────────────────────────────────────────────
-# Build final gt table directly from raw team_wide
+
+# STEP 5: Build Final Table
 team_table <- team_wide %>%
   select(all_of(value_cols)) %>%
   gt() %>%
@@ -204,7 +192,5 @@ for (metric in metrics_to_color) {
     )
 }
 
-# ───────────────────────────────────────────────
-# 💾 SAVE OUTPUT
-# ───────────────────────────────────────────────
 gtsave(team_table, "lions vs ttk Boxscore 2.png", expand = 10)
+
