@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/heatmap")
 
 library(euroleaguer)
 library(tidyverse)
@@ -207,3 +206,4 @@ p1 <- plot_court(court_themes$ppt) +
 ggdraw(p1) + theme(plot.background = element_rect(fill="white", color = NA)) 
 
 ggsave("Dekker_Heatmap.png", height = 6, width = 6, dpi = 300)
+
