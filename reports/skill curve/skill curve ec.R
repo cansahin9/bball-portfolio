@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/player profile dashboards/skill curve")
 
 # --- Packages ---
 library(readr)
@@ -260,3 +259,4 @@ p <- p + theme(plot.margin = margin(10, 12, 18, 10))
 
 ggsave("Ante ZIZIC Skill Curve — EuroCup & EL 2021-25.png",
        p, width = 6, height = 6, dpi = 300)
+
