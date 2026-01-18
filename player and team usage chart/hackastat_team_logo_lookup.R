@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/player and team usage chart")
 
 library(tibble)
 
@@ -48,3 +47,4 @@ team_lookup <- tibble(
     "CLU"
   )
 )
+
