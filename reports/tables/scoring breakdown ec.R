@@ -1,26 +1,14 @@
-# ───────────────────────────────────────────────
-# ⚙️ SETUP
-# ───────────────────────────────────────────────
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/tables")
-
 # Load required libraries
 library(gt)
 library(dplyr)
 library(readr)
 library(scales)
 
-# ───────────────────────────────────────────────
-# 🔧 Step 1: Load CSV
-# ───────────────────────────────────────────────
-file_path <- "C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/tables/Tarik PHILLIP.csv"
+# Step 1: Load CSV
+file_path <- "Tarik PHILLIP.csv"
 df <- read_csv(file_path)
 
-# ───────────────────────────────────────────────
-# 🎯 Step 2: Extract Scoring Breakdown Data
-# ───────────────────────────────────────────────
-
-# Clean USG% by parsing and dividing by 100 for percent format
-# Clean values
+# Step 2: Extract Scoring Breakdown Data
 usg_clean <- readr::parse_number(df$`USG%`) / 100
 ppg <- df$PTS
 ppp <- df$PPP
@@ -34,11 +22,7 @@ scoring_data <- tibble::tibble(
 
 colnames(scoring_data)[3] <- "PCTL¹"
 
-
-
-# ───────────────────────────────────────────────
-# 🎨 Step 3: Custom GT Theme (Reusable)
-# ───────────────────────────────────────────────
+# Step 3: Custom GT Theme (Reusable)
 gt_theme_f5 <- function(gt_object, ...) {
   gt_object %>%
     opt_table_font(
@@ -104,9 +88,6 @@ scoring_table_gt <- scoring_data %>%
     source_note = md("*¹ Percentile ranks compared to all qualifying guards — 100 = Best, 0 = Worst*")
   )
 
-
-# ───────────────────────────────────────────────
-# 💾 Step 5: Save Table (Optional)
-# ───────────────────────────────────────────────
 gt::gtsave(scoring_table_gt, "scoring_breakdown_compact.png")
+
 
