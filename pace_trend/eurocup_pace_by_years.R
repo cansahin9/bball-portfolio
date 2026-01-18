@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/pace_by_season_eurocup")
 
 # ---------------- Packages ----------------
 library(tidyverse)
@@ -13,10 +12,8 @@ library(cowplot)
 out_csv     <- "eurocup_pace_by_season_manual.csv"
 out_plot    <- "eurocup_pace_by_season_with_logo.png"
 plot_title  <- "EuroCup Pace by Season"
-logo_path_ec <- "eurocup_logo.png"   # ensure this PNG exists in the working dir
+logo_path_ec <- "eurocup_logo.png"   
 
-# ---------------- Manually embedded EuroCup pace ----------------
-# 19-20: 72.2 | 21: 71.8 | 22: 72.3 | 23: 73.9 | 24: 74.8 | 25: 74.6
 pace_df <- tribble(
   ~season,   ~pace,
   "2019-20", 72.2,
@@ -90,3 +87,4 @@ p_with_logo <- ggdraw(p) +
 ggsave(out_plot, p_with_logo, width = 10, height = 6, dpi = 300, bg = "oldlace")
 
 print(p_with_logo)
+
