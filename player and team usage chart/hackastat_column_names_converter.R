@@ -1,7 +1,5 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/player and team usage chart")
 
-
-# 1. Create vector with your raw column names (copy/paste as is)
+# 1. Create vector with your raw column names 
 col_names <- c(
   "PLAYER: player name",
   "ROLE: position/role",
@@ -103,4 +101,5 @@ write.table(
   row.names = FALSE,
   quote = FALSE
 )
+
 
