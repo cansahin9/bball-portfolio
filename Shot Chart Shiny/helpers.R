@@ -144,5 +144,6 @@ plot_court = function(court_theme = court_themes$light, use_short_three = FALSE)
     )
 }
 generate_base_court <- function() {
-  plot_court(court_theme = court_themes$ppt)  # or use court_themes$light if you prefer
+  plot_court(court_theme = court_themes$ppt) 
 }
+
