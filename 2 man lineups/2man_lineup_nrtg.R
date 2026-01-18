@@ -143,7 +143,7 @@ df <- df %>%
 
 df %>%
   mutate(team_abbreviation = logo_url) %>%
-  arrange(desc(net_rtg)) %>%  # ✅ Sort by Net Rating DESC
+  arrange(desc(net_rtg)) %>%  # Sort by Net Rating DESC
   gt() %>%
   gt_theme_f5() %>%
   gt_img_rows(columns = team_abbreviation, height = 30, img_source = "web") %>%
@@ -184,6 +184,7 @@ df %>%
     source_note = md("<div style='text-align:right; color:gray;'>Table: Can Sahin</div>")
   ) %>%
   gt_save_crop(file = "eurocup_double_big.png", bg = "floralwhite")
+
 
 
 
