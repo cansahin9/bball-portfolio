@@ -1,7 +1,4 @@
 
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/post game report")
-
-
 library(tidyverse)
 library(euroleaguer)
 
@@ -151,5 +148,6 @@ generate_game_flow_chart(season_code = "U2025", game_code = 46, team_code = "LLI
 generate_game_flow_chart(season_code = "U2025", game_code = 46, team_code = "TTK")  
 
 ggsave("game_flow_lions_telekom2.png", width = 12, height = 6, dpi = 300)
+
 
 
