@@ -1,4 +1,3 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Eurocup/25-26/vs Besiktas 07.10.2025")
 
 library(magick)
 
@@ -15,4 +14,5 @@ combine_matchup_tables(
   gt1_path = "matchup_BES_vs_LLI.png",
   gt2_path = "matchup_LLI_vs_BES.png",
   output_path = "matchup_combined_BES_LLI.png"
+
 )
