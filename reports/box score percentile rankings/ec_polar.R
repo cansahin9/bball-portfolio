@@ -1,15 +1,14 @@
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/player profile dashboards/box score percentile rankings")
 
-# 📦 Load required libraries
+# Load required libraries
 library(tidyverse)
 library(ggplot2)
 library(readr)
 library(geomtextpath)
 
-# 📥 Load data
+# Load data
 raw <- read_csv("Jonah Mathews.csv")
 
-# 🔁 Rename percentile columns based on previous stat column (safe and unique)
+# Rename percentile columns based on previous stat column
 col_names <- colnames(raw)
 for (i in seq_along(col_names)) {
   if (grepl("^PERCENTILE", col_names[i])) {
@@ -22,11 +21,11 @@ for (i in seq_along(col_names)) {
 }
 colnames(raw) <- col_names
 
-# ✅ Select 2024-25 player row
+# Select 2024-25 player row
 player_row <- raw %>%
   filter(SEASON == "2024-2025")
 
-# 🎯 Define the 12 key metrics
+# Define the 12 key metrics
 metrics <- tribble(
   ~stat,                ~column,                ~group,
   "Points Per Poss.",    "PPP_PCTL",             "Scoring",
@@ -36,7 +35,7 @@ metrics <- tribble(
   
   "Usage %",            "USGP_PCTL",            "Possession",
   "Assist %",           "ASTP_PCTL",            "Possession",
-  "Ball Security",      "TOVP_PCTL",            "Possession",  # Will invert below
+  "Ball Security",      "TOVP_PCTL",            "Possession",  
   "Off. Rebounding %",  "ORBP_PCTL",            "Possession",
   
   "Def. Rebounding %",  "DRBP_PCTL",            "Defending",
@@ -44,7 +43,7 @@ metrics <- tribble(
   "Steal %",            "STP_PCTL",             "Defending"
 )
 
-# 🔢 Build the polar plot data
+# Build the polar plot data
 plot_data <- metrics %>%
   mutate(
     value = as.numeric(player_row[1, column]),
@@ -66,7 +65,7 @@ ggplot(plot_data, aes(x = fct_inorder(stat), y = value, fill = group)) +
   geom_bar(stat = "identity", width = 1, colour = "white", linewidth = 0.5) +
   geom_label(aes(label = round(value)), fill = "gray25", colour = "white",
              size = 4, family = "Sans", fontface = "bold", show.legend = FALSE) +
-  coord_curvedpolar() +   # ✅ keep only ONE coord system
+  coord_curvedpolar() +  
   scale_fill_manual(values = color_map) +
   theme_void(base_family = "sans") +
   theme(
@@ -86,9 +85,10 @@ ggplot(plot_data, aes(x = fct_inorder(stat), y = value, fill = group)) +
   labs(
     title = "Jonah Mathews",
     subtitle = "EuroCup 24–25 Season Box Score Percentile Rankings",
-    caption = "100 = Best  0 = Worst\nAmongst all qualifying guards\n" # change position for players
+    caption = "100 = Best  0 = Worst\nAmongst all qualifying guards\n" 
   )
 
 # 💾 Save output
 ggsave("Jonah Mathews 2024_25.png", width = 7, height = 7, dpi = 300, bg = "white")
+
 
