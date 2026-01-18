@@ -1,5 +1,3 @@
-# ───── SETUP ─────
-setwd("C:/Users/User/OneDrive/Masaüstü/London Lions/Portfolio/reports/post game report")
 
 # ───── Setup ─────
 library(euroleaguer)
@@ -44,11 +42,11 @@ team_shots <- game_data %>%
     )
   ) %>% filter(!is.na(zone))
 
-# ✅ Pull all games from Rounds 1–4 (or any range)
+# Pull all games from Rounds 1–4 (or any range)
 games_metadata <- getCompetitionGames(season_code = "U2025", round = 1:4)
 game_codes <- unique(games_metadata$GameCode)
 
-# ✅ Pull shot data from those games
+# Pull shot data from those games
 safe_get <- purrr::possibly(function(code) getGamePoints(season_code = "U2025", game_code = code), otherwise = NULL)
 games <- purrr::map(game_codes, safe_get) %>% purrr::compact()
 league_data <- bind_rows(games)
@@ -127,7 +125,7 @@ gt_theme_f5 <- function(gt_object) {
 }
 
 gt_table_clean <- zone_comp %>%
-  select(Zone, MD, ATT, FG_PCT_Team, PPS_Team) %>%   # 👈 Swapped columns
+  select(Zone, MD, ATT, FG_PCT_Team, PPS_Team) %>%   # Swapped columns
   gt() %>%
   gt_theme_f5() %>%
   fmt_number(columns = PPS_Team, decimals = 2) %>%
@@ -142,7 +140,7 @@ gt_table_clean <- zone_comp %>%
     columns = PPS_Team,
     colors = col_numeric(
       palette = c("#e63946", "#f1faee", "#52b788"),
-      domain = range(zone_comp$PPS_Team, league_stats$PPS_League, na.rm = TRUE)  # ✅ Includes both team + league
+      domain = range(zone_comp$PPS_Team, league_stats$PPS_League, na.rm = TRUE)  # Includes both team + league
     )
   ) %>%
   
@@ -186,11 +184,7 @@ gt_table_clean <- zone_comp %>%
 
 gtsave(gt_table_clean, "lions vs telekom Team_Efficiency_by_Zone_vs_League 2.png", vwidth = 3800, vheight = 3600, expand = 10)
 
-
-
-# -----------------------------------------------
 # Percentile table
-
 # Pull all games from Rounds 1–4 (adjust as needed)
 games_metadata <- getCompetitionGames(season_code = "U2025", round = 1:5)
 game_codes <- unique(games_metadata$GameCode)
@@ -299,7 +293,6 @@ gt_percentile_table <- team_percentiles %>%
 
 gtsave(gt_percentile_table, "lions vs telekom Team_Zone_Efficiency_Percentile_Rank 2.png", vwidth = 4000, vheight = 3600, expand = 10)
 
-# -----------------------------------------------
 # Percentile Wheel Chart
 # # ---- Step 1: Pull PPS Percentiles ----
 zone_percentiles <- team_percentiles %>%
@@ -322,7 +315,7 @@ zone_data <- tibble(Zone = zone_levels) %>%
   left_join(zone_groups, by = "Zone") %>%
   mutate(
     fill_fg = "#49BED8",  # team color
-    fill_bg = lighten(fill_fg, amount = 0.8),  # ⚠️ creates a shaded version
+    fill_bg = lighten(fill_fg, amount = 0.8),  # creates a shaded version
     r = PPS_percentile,
     r_draw = ifelse(PPS_percentile == 0, 2, PPS_percentile),
     angle = pi / length(zone_levels),
@@ -334,7 +327,7 @@ zone_data <- tibble(Zone = zone_levels) %>%
 zone_data %>% filter(is.na(fill_fg))
 
 ggplot(zone_data) +
-  # Background arc — now uses shaded fill
+  # Background arc 
   geom_arc_bar(
     aes(
       start = start, end = end, r0 = 0, r = 100,
@@ -385,3 +378,4 @@ ggplot(zone_data) +
   )
 
 ggsave("lions vs telekom Zone_PPS_Percentile_SemiCircular_Auto 2.png", width = 10, height = 6, dpi = 300, bg = "white")
+
